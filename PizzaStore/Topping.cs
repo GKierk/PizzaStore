@@ -1,6 +1,6 @@
 ﻿namespace PizzaStore
 {
-    internal class Topping
+    public class Topping
     {
         #region Instance Fields
         private string _name;
