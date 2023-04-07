@@ -35,7 +35,7 @@
         #endregion
 
         #region Methods
-        public void DefaultToppings()
+        private void DefaultToppings()
         {
             AddNewTopping("Ost", 8);
             AddNewTopping("Gorgonzola", 12);
