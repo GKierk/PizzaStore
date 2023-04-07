@@ -5,6 +5,7 @@
         #region Instance Fields
         private string _name;
         private int _price;
+        Dictionary<int, Topping> _defaultToppings = new Dictionary<int, Topping>();
         #endregion
 
         #region Constructor
@@ -12,6 +13,7 @@
         {
             _name = name;
             _price = price;
+            DefaultToppings();
         }
         #endregion
 
@@ -24,6 +26,26 @@
         public int Price
         {
             get { return _price; }
+        }
+
+        public Dictionary<int, Topping> Toppings
+        {
+            get { return _defaultToppings; }
+        }
+        #endregion
+
+        #region Methods
+        public void DefaultToppings()
+        {
+            AddNewTopping("Ost", 8);
+            AddNewTopping("Gorgonzola", 12);
+            AddNewTopping("Tomat Sovs", 5);
+        }
+
+        public void AddNewTopping(string toppingName, int toppingPrice)
+        {
+            int _size = _defaultToppings.Count;
+            _defaultToppings.Add(++_size, new Topping(toppingName, toppingPrice));
         }
         #endregion
     }
