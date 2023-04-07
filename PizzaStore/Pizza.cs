@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PizzaStore
+﻿namespace PizzaStore
 {
     public class Pizza : MenuItem
     {
@@ -15,6 +9,9 @@ namespace PizzaStore
         }
         #endregion
 
-
+        public void AddTopping()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
