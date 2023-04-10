@@ -3,7 +3,7 @@
     public class Customer : Person
     {
         #region Instance Fields
-        List <MenuItem> _currentOrders = new List <MenuItem> ();
+        private List <MenuItem> _currentOrders = new List <MenuItem> ();
         #endregion
 
         #region Constructor
