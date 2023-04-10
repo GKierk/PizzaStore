@@ -1,6 +1,6 @@
 ﻿namespace PizzaStore
 {
-    internal class Customer : Person
+    public class Customer : Person
     {
         #region Instance Fields
         List <MenuItem> _currentOrders = new List <MenuItem> ();
