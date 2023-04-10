@@ -17,7 +17,7 @@ namespace PizzaStore
         #endregion
 
         #region Properties
-        static List<Pizza> Pizzas
+        public static List<Pizza> Pizzas
         {
             get { return _pizzas; }
             set { _pizzas = value; }
