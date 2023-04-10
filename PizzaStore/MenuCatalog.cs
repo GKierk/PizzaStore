@@ -32,7 +32,7 @@ namespace PizzaStore
             CreatePizza("Pepperoni", "Medium", 89);
         }
 
-        public static Pizza? SearchForPizza(String name)
+        public static Pizza SearchForPizza(String name)
         {
             foreach(Pizza pizza in Pizzas)
             {
