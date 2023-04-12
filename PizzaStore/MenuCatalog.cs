@@ -32,6 +32,7 @@ namespace PizzaStore
             CreatePizza("Pepperoni", "Medium", 89);
         }
 
+        // TODO: ændre til void metode.
         public static Pizza SearchForPizza(String name)
         {
             foreach(Pizza pizza in Pizzas)
