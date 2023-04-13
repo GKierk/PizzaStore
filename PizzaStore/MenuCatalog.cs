@@ -1,7 +1,4 @@
-﻿using PizzaStore;
-using System.Diagnostics.Metrics;
-
-namespace PizzaStore
+﻿namespace PizzaStore
 {
     public static class MenuCatalog
     {
@@ -32,18 +29,17 @@ namespace PizzaStore
             CreatePizza("Pepperoni", "Medium", 89);
         }
 
-        // TODO: ændre til void metode.
-        public static Pizza SearchForPizza(String name)
+        public static string SearchForPizza(String name)
         {
             foreach(Pizza pizza in Pizzas)
             {
                 if (pizza.Name.ToLower().Equals(name.ToLower()))
                 {
-                    return pizza;
+                    return pizza.Name;
                 }
             }
 
-            return new Pizza("Ukendt", "Ukendt", 0);
+            return "Ikke fundet";
         }
 
         public static void CreatePizza(string pizzaName, string pizzaSize, int pizzaPrice)
@@ -68,6 +64,48 @@ namespace PizzaStore
             }
 
             Console.WriteLine(_fullString);
+        }
+
+        public static void Choice()
+        {
+            Console.WriteLine("Hvad ønsker du at foretage dig?" +
+                "\n1. Opret en ny pizza." +
+                "\n2. Læs menuen." +
+                "\n3. Opdater pizza." +
+                "\n4. Slet pizza.");
+                
+            string choice = Console.ReadLine();
+            int id = int.Parse(choice);
+
+            switch (id)
+            {
+                case 1:
+                    Console.WriteLine("Indtast oplysningerne i følgende rækkefølge.");
+                    Console.Write("\tNavn: ");
+                    string pizzaName = Console.ReadLine();
+                    Console.Write("\tStørrelse: ");
+                    string pizzaSize = Console.ReadLine();
+                    Console.Write("\tPris: ");
+                    string pizzaPrice = Console.ReadLine();
+                    int price = int.Parse(pizzaPrice);
+                    CreatePizza(pizzaName, pizzaSize, price);
+                    break;
+                case 2:
+                    ReadPizzas();
+                    break;
+                case 3:
+                    UpdatePizza();
+                    break;
+                case 4:
+                    ReadPizzas();
+                    Console.WriteLine("Skriv nummer på den pizza, som du ønsker at slette.");
+                    string readInput = Console.ReadLine();
+                    int deletionNumber = int.Parse(readInput);
+                    DeletePizzza(deletionNumber);
+                    break;
+                default:
+                    break;
+            }
         }
 
         public static void UpdatePizza()
