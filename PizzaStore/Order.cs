@@ -17,44 +17,58 @@
         #endregion
 
         #region Methods
-        public static void CreateOrder(Customer customerName)
+        public static void CreateOrder(string customerName)
         {
             foreach (Customer id in CustomerCatalog.Customers)
             {
-                if (id.Equals(customerName))
+                if (id.Name.ToLower().Equals(customerName))
                 {
                     MenuCatalog.ReadPizzas();
                     Console.WriteLine("Hvilke pizza ønsker du at tilføje til din ordre? (Skriv navnet)");
                     string input = Console.ReadLine();
                     if (input is string)
                     {
-                        customerName.AddPizzaToOrder(input);
+                        id.AddPizzaToOrder(input);
                     }
                 }
             }
         }
 
-        public static void ReadOrder(Customer customerName) 
+        public static void ReadOrder(string customerName) 
         {
             string message = "";
             message += "Du har bestilt det følgelnde:\n";
-
-            foreach(Pizza pizza in customerName.CurrentOrder)
+            foreach (Customer id in CustomerCatalog.Customers)
             {
-                message += $"\t{pizza.ToString()}\n";
+                if (id.Name.ToLower().Equals(customerName))
+                {
+                    foreach (Pizza pizza in id.CurrentOrder)
+                    {
+                        message += $"\t{pizza.ToString()}\n";
+                    }
+                }
             }
+
+            Console.WriteLine($"Din totale prise inklusiv levering bliver {CalcultateTotal(customerName)} kr.");
+
         }
 
-        public static double CalcultateTotal(Customer customerName)
+        public static double CalcultateTotal(string customerName)
         {
             double _total = 0;
-
-            foreach(MenuItem i in customerName.CurrentOrder)
+            
+            foreach(Customer id in CustomerCatalog.Customers)
             {
-                _total += i.Price * Data.Tax;
+                if (id.Name.ToLower().Equals(customerName))
+                {
+                    foreach(MenuItem item in id.CurrentOrder)
+                    {
+                        _total += item.Price * Data.Tax;
+                    }
+                }
             }
 
-            return _total * Data.DeliveryFee;
+            return _total + Data.DeliveryFee;
         }
         #endregion
     }
