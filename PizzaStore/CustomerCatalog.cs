@@ -48,9 +48,9 @@
             Customers.Add(new Customer(name));
         }
 
-        public static Customer ReadCustomer(int id)
+        public static string ReadCustomer(int id)
         {
-            return Customers[id];
+            return Customers[id].Name;
         }
 
         public static void ReadCustomers()
