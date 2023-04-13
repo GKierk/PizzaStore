@@ -14,7 +14,7 @@
         #endregion
 
         #region Properties
-        List<MenuItem> CurrentOrder
+        public List<MenuItem> CurrentOrder
         { 
             get { return _currentOrders; }
             set { _currentOrders = value; }
