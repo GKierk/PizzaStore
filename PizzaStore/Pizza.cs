@@ -1,4 +1,7 @@
-﻿namespace PizzaStore
+﻿/**
+ * Edited from previous exercise UML 1 by Gabriel H. Kierkegaard.
+ **/
+namespace PizzaStore
 {
     public class Pizza : MenuItem
     {
