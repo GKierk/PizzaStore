@@ -48,9 +48,9 @@
             Employees.Add(new Employee(name));
         }
 
-        public static Employee ReadEmployee(int id)
+        public static string ReadEmployee(int id)
         {
-            return Employees[id];
+            return Employees[id].Name;
         }
 
         public static void ReadEmployees()
@@ -65,6 +65,43 @@
             }
 
             Console.WriteLine(_fullString);
+        }
+
+        public static void Choice()
+        {
+            Console.WriteLine("Hvad ønsker du at foretage dig?" +
+                "\n1. Opret en ny ansat." +
+                "\n2. Få en liste over ansatte." +
+                "\n3. Opdater ansat." +
+                "\n4. Slet en ansat.");
+
+            string choice = Console.ReadLine();
+            int id = int.Parse(choice);
+
+            switch (id)
+            {
+                case 1:
+                    Console.WriteLine("Indtast oplysningerne i følgende rækkefølge.");
+                    Console.Write("Navn: ");
+                    string employeeName = Console.ReadLine();
+                    CreateEmployee(employeeName);
+                    break;
+                case 2:
+                    ReadEmployees();
+                    break;
+                case 3:
+                    UpdateEmployee();
+                    break;
+                case 4:
+                    ReadEmployees();
+                    Console.WriteLine("Skriv nummer på den ansatte, som du ønsker at slette.");
+                    string readInput = Console.ReadLine();
+                    int deletionNumber = int.Parse(readInput);
+                    DeleteEmployee(deletionNumber);
+                    break;
+                default:
+                    break;
+            }
         }
 
         public static void UpdateEmployee()
@@ -131,7 +168,7 @@
             }
         }
 
-        public static void DeleteCustomer(int id)
+        public static void DeleteEmployee(int id)
         {
             --id;
             Employees.Remove(Employees[id]);
