@@ -1,1 +1,2 @@
 # PizzaStore
+A assignment project.
