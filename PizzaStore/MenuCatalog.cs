@@ -75,36 +75,44 @@
                 "\n4. Slet pizza.");
                 
             string choice = Console.ReadLine();
-            int id = int.Parse(choice);
 
-            switch (id)
+            try
             {
-                case 1:
-                    Console.WriteLine("Indtast oplysningerne i følgende rækkefølge.");
-                    Console.Write("\tNavn: ");
-                    string pizzaName = Console.ReadLine();
-                    Console.Write("\tStørrelse: ");
-                    string pizzaSize = Console.ReadLine();
-                    Console.Write("\tPris: ");
-                    string pizzaPrice = Console.ReadLine();
-                    int price = int.Parse(pizzaPrice);
-                    CreatePizza(pizzaName, pizzaSize, price);
-                    break;
-                case 2:
-                    ReadPizzas();
-                    break;
-                case 3:
-                    UpdatePizza();
-                    break;
-                case 4:
-                    ReadPizzas();
-                    Console.WriteLine("Skriv nummer på den pizza, som du ønsker at slette.");
-                    string readInput = Console.ReadLine();
-                    int deletionNumber = int.Parse(readInput);
-                    DeletePizzza(deletionNumber);
-                    break;
-                default:
-                    break;
+                int id = int.Parse(choice);
+
+                switch (id)
+                {
+                    case 1:
+                        Console.WriteLine("Indtast oplysningerne i følgende rækkefølge.");
+                        Console.Write("\tNavn: ");
+                        string pizzaName = Console.ReadLine();
+                        Console.Write("\tStørrelse: ");
+                        string pizzaSize = Console.ReadLine();
+                        Console.Write("\tPris: ");
+                        string pizzaPrice = Console.ReadLine();
+                        int price = int.Parse(pizzaPrice);
+                        CreatePizza(pizzaName, pizzaSize, price);
+                        break;
+                    case 2:
+                        ReadPizzas();
+                        break;
+                    case 3:
+                        UpdatePizza();
+                        break;
+                    case 4:
+                        ReadPizzas();
+                        Console.WriteLine("Skriv nummer på den pizza, som du ønsker at slette.");
+                        string readInput = Console.ReadLine();
+                        int deletionNumber = int.Parse(readInput);
+                        DeletePizzza(deletionNumber);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch
+            {
+                throw new NotANumberException();
             }
         }
 
@@ -167,15 +175,22 @@
             var _input = Console.ReadLine(); //as string;
             if (_input is string)
             {
-                int _id = Int32.Parse(_input);
-                --_id;
-                Console.WriteLine();
-                Console.WriteLine("Indtast nyt navn.");
-                var _newName = Console.ReadLine();
-                if(_newName is string)
+                try
                 {
-                    _pizzas[_id].Name = _newName;
+                    int _id = Int32.Parse(_input);
+                    --_id;
                     Console.WriteLine();
+                    Console.WriteLine("Indtast nyt navn.");
+                    var _newName = Console.ReadLine();
+                    if (_newName is string)
+                    {
+                        _pizzas[_id].Name = _newName;
+                        Console.WriteLine();
+                    }
+                }
+                catch
+                {
+                    throw new NotANumberException();
                 }
             }
         }
@@ -187,15 +202,22 @@
             var _input = Console.ReadLine(); //as string;
             if (_input is string)
             {
-                int _id = Int32.Parse(_input);
-                --_id;
-                Console.WriteLine();
-                Console.WriteLine("Indtast ny størrelse.");
-                var _newSize = Console.ReadLine();
-                if (_newSize is string)
+                try
                 {
-                    _pizzas[_id].Size = _newSize;
+                    int _id = Int32.Parse(_input);
+                    --_id;
                     Console.WriteLine();
+                    Console.WriteLine("Indtast ny størrelse.");
+                    var _newSize = Console.ReadLine();
+                    if (_newSize is string)
+                    {
+                        _pizzas[_id].Size = _newSize;
+                        Console.WriteLine();
+                    }
+                }
+                catch
+                {
+                    throw new NotANumberException() ;
                 }
             }
         }
@@ -207,16 +229,23 @@
             var _input = Console.ReadLine(); //as string;
             if (_input is string)
             {
-                int _id = Int32.Parse(_input);
-                --_id;
-                Console.WriteLine();
-                Console.WriteLine("Indtast ny pris.");
-                var _newPrice = Console.ReadLine();
-                if (_newPrice is string)
+                try
                 {
-                    int _newPizzaPrice = Int32.Parse(_newPrice);
-                    _pizzas[_id].Price = _newPizzaPrice;
+                    int _id = Int32.Parse(_input);
+                    --_id;
                     Console.WriteLine();
+                    Console.WriteLine("Indtast ny pris.");
+                    var _newPrice = Console.ReadLine();
+                    if (_newPrice is string)
+                    {
+                        int _newPizzaPrice = Int32.Parse(_newPrice);
+                        _pizzas[_id].Price = _newPizzaPrice;
+                        Console.WriteLine();
+                    }
+                }
+                catch
+                {
+                    throw new NotANumberException();
                 }
             }
         }

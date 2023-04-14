@@ -76,31 +76,39 @@
                 "\n4. Slet en ansat.");
 
             string choice = Console.ReadLine();
-            int id = int.Parse(choice);
 
-            switch (id)
+            try
             {
-                case 1:
-                    Console.WriteLine("Indtast oplysningerne i følgende rækkefølge.");
-                    Console.Write("Navn: ");
-                    string employeeName = Console.ReadLine();
-                    CreateEmployee(employeeName);
-                    break;
-                case 2:
-                    ReadEmployees();
-                    break;
-                case 3:
-                    UpdateEmployee();
-                    break;
-                case 4:
-                    ReadEmployees();
-                    Console.WriteLine("Skriv nummer på den ansatte, som du ønsker at slette.");
-                    string readInput = Console.ReadLine();
-                    int deletionNumber = int.Parse(readInput);
-                    DeleteEmployee(deletionNumber);
-                    break;
-                default:
-                    break;
+                int id = int.Parse(choice);
+
+                switch (id)
+                {
+                    case 1:
+                        Console.WriteLine("Indtast oplysningerne i følgende rækkefølge.");
+                        Console.Write("Navn: ");
+                        string employeeName = Console.ReadLine();
+                        CreateEmployee(employeeName);
+                        break;
+                    case 2:
+                        ReadEmployees();
+                        break;
+                    case 3:
+                        UpdateEmployee();
+                        break;
+                    case 4:
+                        ReadEmployees();
+                        Console.WriteLine("Skriv nummer på den ansatte, som du ønsker at slette.");
+                        string readInput = Console.ReadLine();
+                        int deletionNumber = int.Parse(readInput);
+                        DeleteEmployee(deletionNumber);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch
+            {
+                throw new NotANumberException();
             }
         }
 
@@ -155,15 +163,22 @@
             var _input = Console.ReadLine();
             if (_input is string)
             {
-                int _id = Int32.Parse(_input);
-                --_id;
-                Console.WriteLine();
-                Console.WriteLine("Indtast nyt navn.");
-                var _newName = Console.ReadLine();
-                if (_newName is string)
+                try
                 {
-                    Employees[_id].Name = _newName;
+                    int _id = Int32.Parse(_input);
+                    --_id;
                     Console.WriteLine();
+                    Console.WriteLine("Indtast nyt navn.");
+                    var _newName = Console.ReadLine();
+                    if (_newName is string)
+                    {
+                        Employees[_id].Name = _newName;
+                        Console.WriteLine();
+                    }
+                }
+                catch 
+                {
+                    throw new NotANumberException();
                 }
             }
         }

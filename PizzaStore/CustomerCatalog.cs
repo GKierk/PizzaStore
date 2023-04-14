@@ -76,31 +76,37 @@
                 "\n4. Slet en kunde.");
 
             string choice = Console.ReadLine();
-            int id = int.Parse(choice);
-
-            switch (id)
-            {
-                case 1:
-                    Console.WriteLine("Indtast oplysningerne i følgende rækkefølge.");
-                    Console.Write("Navn: ");
-                    string customerName = Console.ReadLine();
-                    CreateCustomer(customerName);
-                    break;
-                case 2:
-                    ReadCustomers();
-                    break;
-                case 3:
-                    UpdateCustomer();
-                    break;
-                case 4:
-                    ReadCustomers();
-                    Console.WriteLine("Skriv nummer på den pizza, som du ønsker at slette.");
-                    string readInput = Console.ReadLine();
-                    int deletionNumber = int.Parse(readInput);
-                    DeleteCustomer(deletionNumber);
-                    break;
-                default:
-                    break;
+            try 
+            { 
+                int id = int.Parse(choice);
+                switch (id)
+                {
+                    case 1:
+                        Console.WriteLine("Indtast oplysningerne i følgende rækkefølge.");
+                        Console.Write("Navn: ");
+                        string customerName = Console.ReadLine();
+                        CreateCustomer(customerName);
+                        break;
+                    case 2:
+                        ReadCustomers();
+                        break;
+                    case 3:
+                        UpdateCustomer();
+                        break;
+                    case 4:
+                        ReadCustomers();
+                        Console.WriteLine("Skriv nummer på den pizza, som du ønsker at slette.");
+                        string readInput = Console.ReadLine();
+                        int deletionNumber = int.Parse(readInput);
+                        DeleteCustomer(deletionNumber);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch 
+            { 
+            throw new NotANumberException();
             }
         }
 
@@ -155,15 +161,22 @@
             var _input = Console.ReadLine();
             if (_input is string)
             {
-                int _id = Int32.Parse(_input);
-                --_id;
-                Console.WriteLine();
-                Console.WriteLine("Indtast nyt navn.");
-                var _newName = Console.ReadLine();
-                if (_newName is string)
+                try
                 {
-                    Customers[_id].Name = _newName;
+                    int _id = Int32.Parse(_input);
+                    --_id;
                     Console.WriteLine();
+                    Console.WriteLine("Indtast nyt navn.");
+                    var _newName = Console.ReadLine();
+                    if (_newName is string)
+                    {
+                        Customers[_id].Name = _newName;
+                        Console.WriteLine();
+                    }
+                }
+                catch 
+                { 
+                    throw new NotANumberException();
                 }
             }
         }

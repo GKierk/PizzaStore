@@ -39,16 +39,24 @@
                         var _person = Console.ReadLine();
                         if (_person is string)
                         {
-                            int _id = int.Parse(_person);
-
-                            switch (_id)
+                            try
                             {
-                                case 1:
-                                    SwitchToEmployee();
-                                    break;
-                                case 2:
-                                    SwitchToCustomer();
-                                    break;
+                                int _id = int.Parse(_person);
+
+                                switch (_id)
+                                {
+                                    case 1:
+                                        SwitchToEmployee();
+                                        break;
+                                    case 2:
+                                        SwitchToCustomer();
+                                        break;
+                                }
+
+                            }
+                            catch
+                            {
+                                throw new NotANumberException(); 
                             }
                         }
                     }
@@ -65,19 +73,26 @@
                 "\n3. Indstillinger ift. kunder.");
             var _input = Console.ReadLine();
             int _id = int.Parse(_input);
-            switch (_id)
+            try
             {
-                case 1:
-                    MenuCatalog.Choice();
-                    break;
-                case 2:
-                    EmployeeCatalog.Choice();
-                    break;
-                case 3:
-                    CustomerCatalog.Choice();
-                    break;
-                default:
-                    break;
+                switch (_id)
+                {
+                    case 1:
+                        MenuCatalog.Choice();
+                        break;
+                    case 2:
+                        EmployeeCatalog.Choice();
+                        break;
+                    case 3:
+                        CustomerCatalog.Choice();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch
+            {
+                throw new NotANumberException();
             }
         }
 
@@ -88,19 +103,26 @@
                 "\n2. Opdater kundeoplysninger.");
             var _input = Console.ReadLine();
             int _id = int.Parse(_input);
-            switch (_id)
+            try
             {
-                case 1:
-                    Console.WriteLine("Indtast kunde navn.");
-                    string _person = Console.ReadLine().ToLower();
-                    Order.CreateOrder(_person);
-                    Order.ReadOrder(_person);
-                    break;
-                case 2:
-                    CustomerCatalog.UpdateCustomer();
-                    break;
-                default:
-                    break;
+                switch (_id)
+                {
+                    case 1:
+                        Console.WriteLine("Indtast kunde navn.");
+                        string _person = Console.ReadLine().ToLower();
+                        Order.CreateOrder(_person);
+                        Order.ReadOrder(_person);
+                        break;
+                    case 2:
+                        CustomerCatalog.UpdateCustomer();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch
+            {
+                throw new NotANumberException();
             }
         }
         #endregion
